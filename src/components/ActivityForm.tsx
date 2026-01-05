@@ -21,7 +21,7 @@ const ActivityForm = () => {
   try {
     setLoading(true);
 
-    const response = await fetch("http://localhost:5000/generate-pdf", {
+    const response = await fetch("http://fungrowth-api-cthkfugqhue3eehe.westeurope-01.azurewebsites.net/generate-pdf", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -20,8 +20,9 @@ const ActivityForm = () => {
 
   try {
     setLoading(true);
+    const API_URL = import.meta.env.VITE_API_URL;
 
-    const response = await fetch("http://fungrowth-api-cthkfugqhue3eehe.westeurope-01.azurewebsites.net/generate-pdf", {
+    const response = await fetch(`${API_URL}/generate-pdf`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,73 +1,171 @@
-# React + TypeScript + Vite
+FunGrowth – AI Activity Sheet Generator (MVP)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FunGrowth is a simple AI-powered web app that generates kid-friendly printable activity worksheets as PDFs based on:
 
-Currently, two official plugins are available:
+Topic
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Child’s age
 
-## React Compiler
+Number of questions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Language
 
-## Expanding the ESLint configuration
+The app is designed as an educational MVP to explore how Generative AI + frontend + cloud backend work together in a real project.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🚀 Live Demo
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Frontend (Azure Static Web App)
+👉 https://icy-mud-008d73803.1.azurestaticapps.net
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Backend API (Azure App Service)
+👉 https://fungrowth-api-cthkfugqhue3eehe.westeurope-01.azurewebsites.net
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🧠 How the App Works
+1️⃣ User Input (Frontend – React + TypeScript)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The user enters:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Subject / Topic (e.g. Shapes, Living Things)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Age of the child
+
+Number of questions
+
+Language (English, Tamil, Hindi, Spanish, Norwegian)
+
+2️⃣ API Call
+
+The frontend sends a POST request to:
+
+/generate-pdf
+
+
+with JSON payload.
+
+3️⃣ AI Content Generation (Backend – Node.js + Express)
+
+The backend uses OpenAI API
+
+Generates age-appropriate worksheet content
+
+Supports multiple languages
+
+Avoids images and answers (print-friendly)
+
+4️⃣ PDF Creation
+
+AI text is converted into a PDF
+
+Unicode fonts are used to support:
+
+Tamil
+
+Hindi
+
+Spanish
+
+Norwegian
+
+The PDF is streamed back to the browser
+
+5️⃣ Download
+
+The user automatically downloads:
+
+FunGrowth-Activity-Sheet.pdf
+
+🏗️ Tech Stack
+Frontend
+
+React
+
+TypeScript
+
+Vite
+
+Azure Static Web Apps
+
+Backend
+
+Node.js
+
+Express
+
+OpenAI API
+
+PDFKit
+
+Azure App Service (Linux)
+
+DevOps / Cloud
+
+GitHub Actions (CI/CD)
+
+Azure App Service
+
+Azure Static Web Apps
+
+Environment variables via GitHub Actions
+
+🔐 Environment Variables
+Backend (Azure App Service)
+OPENAI_API_KEY=your_api_key_here
+
+Frontend (Injected at build time)
+VITE_API_URL=https://fungrowth-api-cthkfugqhue3eehe.westeurope-01.azurewebsites.net
+
+
+Note: For Vite apps, environment variables must be available during build, not runtime.
+
+🎯 What This MVP Demonstrates
+
+Real usage of Generative AI
+
+Clean frontend–backend separation
+
+Multilingual content generation
+
+Secure API key handling
+
+Azure deployment (frontend + backend)
+
+CI/CD with GitHub Actions
+
+🔮 Next Possible Improvements
+
+Save generated worksheets (history)
+
+User accounts / login
+
+Image-based activities
+
+Difficulty levels
+
+Payment / subscription
+
+Teacher dashboard
+
+👏 Final Notes
+
+This project was built as a learning-first MVP to understand:
+
+AI integration
+
+Cloud deployment
+
+Real-world debugging
+
+End-to-end architecture
+
+--
+
+## 🛠️ Development Notes
+
+This project uses Vite + React + TypeScript.
+
+For local development:
+- Node.js 18+
+- npm install
+- npm run dev
+
+Vite provides fast HMR and optimized builds.
